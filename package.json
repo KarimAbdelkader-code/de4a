@@ -8,7 +8,11 @@
     "start": "next start",
     "lint": "eslint .",
     "check:event": "node scripts/verify-event.mjs",
-    "check:layout": "node scripts/check-layout.mjs"
+    "check:forms": "node scripts/verify-forms.mjs",
+    "check:integration": "node --env-file-if-exists=.env.local scripts/check-integration.mjs",
+    "check:layout": "node scripts/check-layout.mjs",
+    "check:db": "node --env-file-if-exists=.env.local scripts/check-db.mjs",
+    "db:apply": "node --env-file-if-exists=.env.local scripts/apply-schema.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -17,6 +21,7 @@
     "framer-motion": "^13.2.0",
     "lucide-react": "^0.468.0",
     "next": "^16.3.4",
+    "postgres": "^3.4.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",

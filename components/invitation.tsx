@@ -1,23 +1,22 @@
-"use client";
-
 import { CalendarDays, ChevronDown, MapPin } from "lucide-react";
-import { useState } from "react";
 import Countdown from "./countdown";
 import { Botanical, MovingRule } from "./botanical";
 import { RsvpForm } from "./forms";
 import Guestbook from "./guestbook";
 import { Reveal, Stagger, StaggerItem } from "./reveal";
 import { CALENDAR_URL, EVENT } from "@/lib/event";
+import Navigation from "./navigation";
+import Envelope from "./envelope";
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => <p className="eyebrow">{children}</p>;
 const Monogram = () => <div className="monogram" aria-label="Karim and Salma">K <i>&amp;</i> S</div>;
 
 export default function Invitation() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <main>
-      <section className="hero section">
+    <>
+      <Navigation />
+      <main>
+      <section id="top" className="hero section">
         <Botanical side="left" className="hero-botanical" />
         <Botanical side="right" className="hero-botanical" />
         <div className="corner corner-tl" /><div className="corner corner-br" />
@@ -41,7 +40,7 @@ export default function Invitation() {
         </Reveal>
       </section>
 
-      <section className="section save-date">
+      <section id="details" className="section save-date">
         <Reveal>
           <Eyebrow>Save the date</Eyebrow>
           <div className="editorial-date"><span>Friday</span><strong>25</strong><span>September<br />2026</span></div>
@@ -53,7 +52,7 @@ export default function Invitation() {
         </Reveal>
       </section>
 
-      <section className="section celebration">
+      <section id="venue" className="section celebration">
         <Botanical side="right" />
         <Reveal className="celebration-card">
           <Eyebrow>Our celebration</Eyebrow>
@@ -64,7 +63,7 @@ export default function Invitation() {
         </Reveal>
       </section>
 
-      <section className="section chapter">
+      <section id="story" className="section chapter">
         <Botanical side="left" />
         <Reveal>
           <Eyebrow>A new chapter</Eyebrow>
@@ -90,14 +89,11 @@ export default function Invitation() {
         <Reveal>
           <Eyebrow>A little note from us</Eyebrow>
           <p>Tap the envelope to open.</p>
-          <button className={`envelope ${open ? "open" : ""}`} onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Open our note">
-            <span className="letter"><b>Dear family and friends,</b><br /><br />Some moments become unforgettable because of the people we share them with.<br /><br />As we begin this new chapter together, having you beside us would make our celebration even more special.<br /><br />We can’t wait to celebrate, laugh, and create beautiful memories with you.<br /><br /><i>With love,<br />Karim &amp; Salma</i></span>
-            <span className="flap" /><span className="seal">K&amp;S</span>
-          </button>
+          <Envelope />
         </Reveal>
       </section>
 
-      <section className="section forms-section">
+      <section id="rsvp" className="section forms-section">
         <Reveal>
           <Eyebrow>Will you join us?</Eyebrow>
           <h2>Your presence would<br /><i>mean so much.</i></h2>
@@ -106,7 +102,7 @@ export default function Invitation() {
         </Reveal>
       </section>
 
-      <section className="section guestbook">
+      <section id="guestbook" className="section guestbook">
         <Reveal>
           <Eyebrow>Leave us a wish</Eyebrow>
           <h2>Share a little love<br /><i>for our new beginning.</i></h2>
@@ -114,7 +110,7 @@ export default function Invitation() {
         </Reveal>
       </section>
 
-      <footer className="section footer dark-section">
+      <footer id="closing" className="section footer dark-section">
         <Botanical side="right" />
         <Reveal>
           <Eyebrow>See you there</Eyebrow>
@@ -124,8 +120,10 @@ export default function Invitation() {
           <div className="footer-rule" />
           <p>Your presence is the greatest gift we could ask for.</p>
           <Monogram />
+          <a className="button light closing-cta" href="#rsvp">Reply to our invitation</a>
         </Reveal>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }

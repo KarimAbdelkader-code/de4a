@@ -49,8 +49,12 @@ try {
         clientWidth: document.documentElement.clientWidth,
         scrollWidth: document.documentElement.scrollWidth,
         heroOpacity: getComputedStyle(document.querySelector('.hero h1')).opacity,
-        hasTime: document.body.innerText.includes('7:00 PM'),
-        arabicDirection: getComputedStyle(document.querySelector('.arabic')).direction
+        hasTime: document.body.innerText.includes('6:30 PM'),
+        arabicDirection: getComputedStyle(document.querySelector('.arabic')).direction,
+        deadLinks: [...document.querySelectorAll('a[href]')].filter((link) => {
+          const href = link.getAttribute('href');
+          return !href || href === '#' || (href.startsWith('#') && !document.querySelector(href));
+        }).length
       }))()`,
       returnByValue: true,
     });
@@ -59,6 +63,7 @@ try {
     assert.equal(result.heroOpacity, "1", `${width}px hero did not finish its entrance`);
     assert.equal(result.hasTime, true, `${width}px is missing the event time`);
     assert.equal(result.arabicDirection, "rtl", `${width}px Quran text is not RTL`);
+    assert.equal(result.deadLinks, 0, `${width}px has a dead or placeholder link`);
     console.log(`${width}px: layout, hero, time and RTL verified`);
   }
   socket.close();

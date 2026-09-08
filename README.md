@@ -8,4 +8,15 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Create a Supabase project, run `supabase/schema.sql` in its SQL editor, then add the project URL and anon key to `.env.local`.
+## Supabase
+
+Copy `.env.example` to `.env.local` and set the project URL, publishable key, and the **Session Pooler** Postgres connection string from Supabase’s Connect panel. The direct `db.<project-ref>.supabase.co` endpoint requires IPv6 and will not work on IPv4-only networks. Never use a service-role key in the browser.
+
+```bash
+cp .env.example .env.local
+npm run db:apply
+```
+
+`schema.sql` is idempotent: it preserves existing rows, enables RLS, and applies the minimum public grants. New guestbook wishes require moderation in the Supabase dashboard before they appear publicly.
+
+The private `/admin` route lists every RSVP and wish. Set `ADMIN_USERNAME` and `ADMIN_PASSWORD` in `.env.local`; these values stay server-only and are enforced before the route renders.
