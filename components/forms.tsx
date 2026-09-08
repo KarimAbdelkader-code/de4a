@@ -7,8 +7,8 @@ import { useForm } from "react-hook-form";
 import { submitRsvp, submitWish } from "@/app/actions";
 import { RsvpInput, rsvpSchema, WishInput, wishSchema } from "@/lib/validation";
 
-const FieldError = ({ message }: { message?: string }) =>
-  message ? <span className="field-error">{message}</span> : null;
+const FieldError = ({ id, message }: { id: string; message?: string }) =>
+  message ? <span className="field-error" id={id} role="alert">{message}</span> : null;
 
 export function RsvpForm() {
   const [status, setStatus] = useState("");
@@ -26,10 +26,10 @@ export function RsvpForm() {
 
   return (
     <form onSubmit={handleSubmit(send)} className="form-card">
-      <label>Your name<input autoComplete="name" {...register("name")} /></label>
-      <FieldError message={errors.name?.message} />
-      <label>Number of guests<input type="number" inputMode="numeric" min="1" max="10" {...register("guests")} /></label>
-      <FieldError message={errors.guests?.message} />
+      <label>Your name<input autoComplete="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "rsvp-name-error" : undefined} {...register("name")} /></label>
+      <FieldError id="rsvp-name-error" message={errors.name?.message} />
+      <label>Number of guests<input type="number" inputMode="numeric" min="1" max="10" aria-invalid={!!errors.guests} aria-describedby={errors.guests ? "rsvp-guests-error" : undefined} {...register("guests")} /></label>
+      <FieldError id="rsvp-guests-error" message={errors.guests?.message} />
       <fieldset>
         <legend>Will you attend?</legend>
         <div className="radio-row">
@@ -37,9 +37,9 @@ export function RsvpForm() {
           <label><input type="radio" value="no" {...register("attending")} /> Sadly decline</label>
         </div>
       </fieldset>
-      <FieldError message={errors.attending?.message} />
+      <FieldError id="rsvp-attending-error" message={errors.attending?.message} />
       <label>Message for Karim &amp; Salma<textarea rows={3} {...register("message")} /></label>
-      <button className="button dark" disabled={pending}>{pending ? "Sending…" : "Send RSVP"}<ArrowRight size={16} /></button>
+      <button className="button dark" disabled={pending} aria-busy={pending}>{pending ? "Sending…" : "Send RSVP"}<ArrowRight size={16} /></button>
       <p className="form-status" aria-live="polite">{status}</p>
     </form>
   );
@@ -57,11 +57,11 @@ export function WishForm({ onSent }: { onSent?: () => void }) {
 
   return (
     <form onSubmit={handleSubmit(send)} className="form-card compact">
-      <label>Your name<input autoComplete="name" {...register("name")} /></label>
-      <FieldError message={errors.name?.message} />
-      <label>Your message<textarea rows={4} {...register("message")} /></label>
-      <FieldError message={errors.message?.message} />
-      <button className="button outline" disabled={pending}>{pending ? "Sending…" : "Send your wish"}<ArrowRight size={16} /></button>
+      <label>Your name<input autoComplete="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "wish-name-error" : undefined} {...register("name")} /></label>
+      <FieldError id="wish-name-error" message={errors.name?.message} />
+      <label>Your message<textarea rows={4} aria-invalid={!!errors.message} aria-describedby={errors.message ? "wish-message-error" : undefined} {...register("message")} /></label>
+      <FieldError id="wish-message-error" message={errors.message?.message} />
+      <button className="button outline" disabled={pending} aria-busy={pending}>{pending ? "Sending…" : "Send your wish"}<ArrowRight size={16} /></button>
       <p className="form-status" aria-live="polite">{status}</p>
     </form>
   );
