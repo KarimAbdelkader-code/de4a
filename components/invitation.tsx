@@ -7,6 +7,7 @@ import { Reveal, Stagger, StaggerItem } from "./reveal";
 import { CALENDAR_URL, EVENT } from "@/lib/event";
 import Navigation from "./navigation";
 import Envelope from "./envelope";
+import MusicPlayer from "./music-player";
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => <p className="eyebrow">{children}</p>;
 const Monogram = () => <div className="monogram" aria-label="Karim and Salma">K <i>&amp;</i> S</div>;
@@ -15,6 +16,7 @@ export default function Invitation() {
   return (
     <>
       <Navigation />
+      <MusicPlayer />
       <main>
       <section id="top" className="hero section">
         <Botanical side="left" className="hero-botanical" />

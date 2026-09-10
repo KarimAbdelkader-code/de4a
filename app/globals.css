@@ -10,6 +10,9 @@ body { min-width:320px; margin:0; overflow-x:clip; color:var(--charcoal); backgr
 button,input,textarea { font:inherit; }
 button,a { -webkit-tap-highlight-color:transparent; }
 .site-header { position:fixed; z-index:50; top:0; left:0; right:0; min-height:58px; padding:0 clamp(16px,4vw,48px); border-bottom:1px solid rgba(174,141,79,.22); display:flex; align-items:center; justify-content:space-between; gap:20px; background:rgba(248,244,235,.88); backdrop-filter:blur(14px); }
+.music-toggle { position:fixed; z-index:51; right:clamp(16px,4vw,48px); bottom:22px; min-height:40px; padding:10px 13px; border:1px solid rgba(174,141,79,.55); display:flex; align-items:center; gap:8px; color:var(--olive); background:rgba(248,244,235,.92); cursor:pointer; font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; box-shadow:0 5px 18px rgba(47,43,35,.1); backdrop-filter:blur(12px); }
+.music-toggle span { white-space:nowrap; }
+.music-toggle:hover { color:var(--ivory); background:var(--olive); }
 .site-brand { flex:none; color:var(--olive); font:600 17px var(--font-display),serif; letter-spacing:.08em; text-decoration:none; }
 .site-brand i { color:var(--gold); font-weight:400; }
 .site-header nav { display:flex; align-items:center; gap:clamp(13px,2.5vw,32px); overflow-x:auto; scrollbar-width:none; }
