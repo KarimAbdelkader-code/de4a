@@ -69,7 +69,9 @@ p { margin:0; }
 .button:active { transform:translateY(0) scale(.985); }
 .celebration { background:var(--sand); padding-inline:16px; }
 .celebration:before { content:""; position:absolute; inset:clamp(12px,2.5vw,30px); z-index:-1; border:1px solid rgba(180,151,90,.48); }
-.celebration-card { padding:clamp(60px,10vw,100px) clamp(22px,7vw,76px); color:var(--ivory); background:var(--olive); }
+.celebration-card { position:relative; isolation:isolate; overflow:hidden; padding:clamp(60px,10vw,100px) clamp(22px,7vw,76px); color:var(--ivory); background:var(--olive) url("/viola-1.jpg") center 58%/cover no-repeat; box-shadow:0 18px 45px rgba(47,43,35,.16); }
+.celebration-card:before { content:""; position:absolute; z-index:-2; inset:0; background:rgba(24,34,27,.3); }
+.celebration-card:after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(180deg,rgba(20,29,23,.62) 0%,rgba(20,29,23,.3) 42%,rgba(20,29,23,.72) 100%); }
 .celebration-card > p { max-width:440px; margin:30px auto; color:#d8d1c5; }
 .venue { margin:45px auto 0; padding-block:25px; border-block:1px solid rgba(247,242,232,.2); display:flex; align-items:center; justify-content:center; gap:14px; text-align:left; }
 .venue strong,.venue span { display:block; }
