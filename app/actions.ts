@@ -22,7 +22,7 @@ export async function submitWish(input: unknown): Promise<FormResult> {
   if (!parsed.success) return { ok: false, message: parsed.error.issues[0].message };
   const client = getSupabaseServerClient();
   if (!client) return { ok: false, message: "The guestbook is not connected yet. Please try again later." };
-  const { error } = await client.from("wishes").insert(parsed.data);
+  const { error } = await client.from("wishes").insert({ ...parsed.data, approved: false });
   if (error) console.error("Wish insert failed", { code: error.code, message: error.message, details: error.details, hint: error.hint });
   return error
     ? { ok: false, message: "We could not save your wish. Please try again." }
