@@ -11,6 +11,7 @@ export async function submitRsvp(input: unknown): Promise<FormResult> {
   const client = getSupabaseServerClient();
   if (!client) return { ok: false, message: "RSVP is not connected yet. Please try again later." };
   const { error } = await client.from("rsvps").insert({ ...parsed.data, message: parsed.data.message || null });
+  if (error) console.error("RSVP insert failed", { code: error.code, message: error.message, details: error.details, hint: error.hint });
   return error
     ? { ok: false, message: "We could not save your RSVP. Please try again." }
     : { ok: true, message: "Thank you — your reply has been received." };
@@ -22,6 +23,7 @@ export async function submitWish(input: unknown): Promise<FormResult> {
   const client = getSupabaseServerClient();
   if (!client) return { ok: false, message: "The guestbook is not connected yet. Please try again later." };
   const { error } = await client.from("wishes").insert(parsed.data);
+  if (error) console.error("Wish insert failed", { code: error.code, message: error.message, details: error.details, hint: error.hint });
   return error
     ? { ok: false, message: "We could not save your wish. Please try again." }
     : { ok: true, message: "Your wish is now part of our story." };
