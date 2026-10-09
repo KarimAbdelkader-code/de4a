@@ -1,6 +1,6 @@
 import { ArrowLeft, BookHeart, Check, Clock3, Users, X } from "lucide-react";
 import Link from "next/link";
-import { getDatabase } from "@/lib/database";
+import { describeDatabaseError, getDatabase } from "@/lib/database";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +19,12 @@ async function loadData() {
       database.collection<Wish>("wishes").find({}, { projection: { _id: 0 } }).sort({ created_at: -1 }).toArray(),
     ]);
     return { rsvps, wishes, available: true } as const;
-  } catch {
+  } catch (error) {
+    console.error("Admin database load failed", {
+      error: describeDatabaseError(error),
+      mongodbUriConfigured: Boolean(process.env.MONGODB_URI),
+      mongodbDatabase: process.env.MONGODB_DB || "invitation",
+    });
     return { rsvps: [], wishes: [], available: false } as const;
   }
 }

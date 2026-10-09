@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getDatabase } from "@/lib/database";
+import { describeDatabaseError, getDatabase } from "@/lib/database";
 import type { Wish } from "@/lib/database-types";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +14,11 @@ export async function GET() {
       .toArray();
     return NextResponse.json(wishes);
   } catch (error) {
-    console.error("Wishes query failed", error instanceof Error ? error.message : error);
+    console.error("Wishes query failed", {
+      error: describeDatabaseError(error),
+      mongodbUriConfigured: Boolean(process.env.MONGODB_URI),
+      mongodbDatabase: process.env.MONGODB_DB || "invitation",
+    });
     return NextResponse.json({ error: "Guestbook unavailable" }, { status: 503 });
   }
 }
