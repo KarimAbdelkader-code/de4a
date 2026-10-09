@@ -56,7 +56,7 @@ export default async function AdminPage() {
         <article><BookHeart /><strong>{wishes.length}</strong><span>Wishes</span></article>
       </section>
 
-      <section className="admin-section">
+      {/* <section className="admin-section">
         <div className="admin-title"><h2>RSVP responses</h2><span>{rsvps.length} total</span></div>
         {rsvps.length ? <div className="admin-grid">{rsvps.map((rsvp) => (
           <article className="admin-card" key={rsvp.id}>
@@ -66,7 +66,7 @@ export default async function AdminPage() {
             <small><Clock3 size={13} /> {date(rsvp.created_at)}</small>
           </article>
         ))}</div> : <p className="admin-empty">No RSVP responses yet.</p>}
-      </section>
+      </section> */}
 
       <section className="admin-section">
         <div className="admin-title"><h2>Guestbook wishes</h2><span>{wishes.length} total</span></div>
