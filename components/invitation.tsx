@@ -1,7 +1,6 @@
 import { CalendarDays, ChevronDown, MapPin } from "lucide-react";
 import Countdown from "./countdown";
 import { Botanical, MovingRule } from "./botanical";
-import { RsvpForm } from "./forms";
 import Guestbook from "./guestbook";
 import { Reveal, Stagger, StaggerItem } from "./reveal";
 import { CALENDAR_URL, EVENT } from "@/lib/event";
@@ -10,7 +9,7 @@ import Envelope from "./envelope";
 import MusicPlayer from "./music-player";
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => <p className="eyebrow">{children}</p>;
-const Monogram = () => <div className="monogram" aria-label="Karim and Salma">K <i>&amp;</i> S</div>;
+const Monogram = () => <div className="monogram" aria-label="Mostafa and Roaa">M <i>&amp;</i> R</div>;
 
 export default function Invitation() {
   return (
@@ -24,12 +23,12 @@ export default function Invitation() {
         <div className="corner corner-tl" /><div className="corner corner-br" />
         <Stagger className="hero-inner">
           <StaggerItem><Monogram /></StaggerItem>
-          <StaggerItem><Eyebrow>We’re getting engaged</Eyebrow></StaggerItem>
-          <StaggerItem><h1>Karim <em>&amp;</em> Salma</h1></StaggerItem>
-          <StaggerItem><p className="lede">Together with our families, we joyfully invite you to celebrate the beginning of our forever.</p></StaggerItem>
-          <StaggerItem><div className="date-lockup"><span>25</span><i>·</i><span>09</span><i>·</i><span>2026</span></div></StaggerItem>
-          <StaggerItem><p className="hero-time">Friday · {EVENT.time}</p></StaggerItem>
-          <a className="scroll-cue" href="#invitation">Scroll to open our invitation<ChevronDown size={15} /></a>
+          <StaggerItem><Eyebrow>A celebration of love</Eyebrow></StaggerItem>
+          <StaggerItem><h1>Mostafa <em>&amp;</em> Roaa</h1></StaggerItem>
+          <StaggerItem><p className="lede">With the love of our families, we invite you to join us as we celebrate our engagement.</p></StaggerItem>
+          <StaggerItem><div className="date-lockup"><span>05</span><i>·</i><span>11</span><i>·</i><span>2026</span></div></StaggerItem>
+          <StaggerItem><p className="hero-time">Thursday · {EVENT.time}</p></StaggerItem>
+          <a className="scroll-cue" href="#invitation">Open our invitation<ChevronDown size={15} /></a>
         </Stagger>
       </section>
 
@@ -44,43 +43,43 @@ export default function Invitation() {
 
       <section id="details" className="section save-date">
         <Reveal>
-          <Eyebrow>Save the date</Eyebrow>
-          <div className="editorial-date"><span>Friday</span><strong>25</strong><span>September<br />2026</span></div>
-          <h2>Karim <i>&amp;</i> Salma</h2>
+          <Eyebrow>Mark your calendar</Eyebrow>
+          <div className="editorial-date"><span>Thursday</span><strong>05</strong><span>November<br />2026</span></div>
+          <h2>Mostafa <i>&amp;</i> Roaa</h2>
           <p className="event-time"><time dateTime={EVENT.startsAt}>{EVENT.time}</time> · {EVENT.venue}</p>
-          <p>Counting down to our special day</p>
+          <p>Counting down to our celebration</p>
           <Reveal delay={0.12} distance={16}><Countdown /></Reveal>
-          <a className="button outline" href={CALENDAR_URL} target="_blank" rel="noreferrer"><CalendarDays size={17} /> Add to calendar</a>
+          <a className="button outline" href={CALENDAR_URL} target="_blank" rel="noreferrer"><CalendarDays size={17} /> Save the date</a>
         </Reveal>
       </section>
 
       <section id="venue" className="section celebration">
         <Botanical side="right" />
         <Reveal className="celebration-card">
-          <Eyebrow>Our celebration</Eyebrow>
-          <h2>Where our next<br /><i>chapter begins.</i></h2>
-          <p>We would be delighted to have you with us as we celebrate this beautiful new chapter together.</p>
+          <Eyebrow>Join us in celebration</Eyebrow>
+          <h2>Our story continues<br /><i>with you.</i></h2>
+          <p>We would be honored to have you with us as we celebrate this joyful beginning.</p>
           <div className="venue"><MapPin size={20} aria-hidden="true" /><div><strong>{EVENT.venue}</strong><span>{EVENT.date} · {EVENT.time}</span></div></div>
-          <a className="button light" href={EVENT.mapsUrl} target="_blank" rel="noreferrer">Get directions <MapPin size={16} /></a>
+          <a className="button light" href={EVENT.mapsUrl} target="_blank" rel="noreferrer">Find the venue <MapPin size={16} /></a>
         </Reveal>
       </section>
 
       <section id="story" className="section chapter">
         <Botanical side="left" />
         <Reveal>
-          <Eyebrow>A new chapter</Eyebrow>
-          <h2>Two hearts.<br />Two families.<br /><i>One beautiful beginning.</i></h2>
+          <Eyebrow>Our story continues</Eyebrow>
+          <h2>One promise.<br />Two families.<br /><i>A lifetime ahead.</i></h2>
           <div className="fine-rule"><Monogram /></div>
-          <p>On September 25th, we begin the next chapter of our story.</p>
-          <p>And we would love for you to be part of it.</p>
+          <p>On November 5th, we celebrate the start of our next chapter.</p>
+          <p>Your presence will make this moment even more special.</p>
         </Reveal>
       </section>
 
       <section className="section evening dark-section">
         <Reveal>
-          <Eyebrow>The evening</Eyebrow>
+          <Eyebrow>The celebration</Eyebrow>
           <div className="timeline">
-            {[["Welcome", `${EVENT.time} · Our celebration begins.`], ["Engagement", "The moment we say yes to forever."], ["Celebration", "Dinner, music, laughter and memories."], ["Together", "A night surrounded by the people we love."]].map(([title, text], index) => (
+            {[["Welcome", `${EVENT.time} · We welcome you to the celebration.`], ["Engagement", "A promise made with love."], ["Celebration", "An evening filled with dinner, music, and joy."], ["Together", "Together with the people who mean the most."]].map(([title, text], index) => (
               <Reveal className="timeline-item" key={title} delay={index * 0.07} distance={18}><span>0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></Reveal>
             ))}
           </div>
@@ -89,25 +88,16 @@ export default function Invitation() {
 
       <section className="section note">
         <Reveal>
-          <Eyebrow>A little note from us</Eyebrow>
-          <p>Tap the envelope to open.</p>
+          <Eyebrow>A message from us</Eyebrow>
+          <p>Open the envelope for a note.</p>
           <Envelope />
-        </Reveal>
-      </section>
-
-      <section id="rsvp" className="section forms-section">
-        <Reveal>
-          <Eyebrow>Will you join us?</Eyebrow>
-          <h2>Your presence would<br /><i>mean so much.</i></h2>
-          <div className="event-reminder"><span>{EVENT.date}</span><b>{EVENT.time}</b><span>{EVENT.venue}</span></div>
-          <RsvpForm />
         </Reveal>
       </section>
 
       <section id="guestbook" className="section guestbook">
         <Reveal>
-          <Eyebrow>Leave us a wish</Eyebrow>
-          <h2>Share a little love<br /><i>for our new beginning.</i></h2>
+          <Eyebrow>Your wishes mean so much</Eyebrow>
+          <h2>Leave us a message<br /><i>to remember this day.</i></h2>
           <Guestbook />
         </Reveal>
       </section>
@@ -115,14 +105,13 @@ export default function Invitation() {
       <footer id="closing" className="section footer dark-section">
         <Botanical side="right" />
         <Reveal>
-          <Eyebrow>See you there</Eyebrow>
-          <h2>Karim <i>&amp;</i> Salma</h2>
-          <p className="footer-date">25 · 09 · 2026</p>
+          <Eyebrow>Until we celebrate together</Eyebrow>
+          <h2>Mostafa <i>&amp;</i> Roaa</h2>
+          <p className="footer-date">05 · 11 · 2026</p>
           <p><time dateTime={EVENT.startsAt}>{EVENT.time}</time> · {EVENT.venue}</p>
           <div className="footer-rule" />
-          <p>Your presence is the greatest gift we could ask for.</p>
+          <p>Having you with us is the greatest gift.</p>
           <Monogram />
-          <a className="button light closing-cta" href="#rsvp">Reply to our invitation</a>
         </Reveal>
       </footer>
       </main>

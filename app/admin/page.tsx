@@ -13,10 +13,10 @@ function date(value: Date) {
 
 async function loadData() {
   try {
-    const sql = getDatabase();
+    const database = await getDatabase();
     const [rsvps, wishes] = await Promise.all([
-      sql<Rsvp[]>`select id, name, guests, attending, message, created_at from public.rsvps order by created_at desc`,
-      sql<Wish[]>`select id, name, message, approved, created_at from public.wishes order by created_at desc`,
+      database.collection<Rsvp>("rsvps").find({}, { projection: { _id: 0 } }).sort({ created_at: -1 }).toArray(),
+      database.collection<Wish>("wishes").find({}, { projection: { _id: 0 } }).sort({ created_at: -1 }).toArray(),
     ]);
     return { rsvps, wishes, available: true } as const;
   } catch {
@@ -31,7 +31,7 @@ export default async function AdminPage() {
     <main className="admin-page admin-error">
       <p className="eyebrow">Private guest list</p>
       <h1>Database unavailable</h1>
-      <p>Use the Supabase Session Pooler URI for <code>DATABASE_URL</code>, then apply the schema.</p>
+      <p>Set <code>MONGODB_URI</code> to a MongoDB Atlas connection string, then apply the indexes.</p>
       <Link href="/"><ArrowLeft size={16} /> Return to invitation</Link>
     </main>
   );
@@ -40,7 +40,7 @@ export default async function AdminPage() {
   return (
     <main className="admin-page">
       <header className="admin-heading">
-        <div><p className="eyebrow">Private guest list</p><h1>Karim <i>&amp;</i> Salma</h1></div>
+        <div><p className="eyebrow">Private guest list</p><h1>Mostafa <i>&amp;</i> Roaa</h1></div>
         <Link href="/"><ArrowLeft size={16} /> Invitation</Link>
       </header>
 

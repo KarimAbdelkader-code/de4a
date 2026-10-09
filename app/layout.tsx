@@ -22,11 +22,11 @@ const arabic = Noto_Naskh_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "Karim & Salma — Our Engagement",
-  description: "Join Karim and Salma on 25 September 2026 at 7:00 PM at Viola Hall.",
+  title: "Mostafa & Roaa — A Celebration of Love",
+  description: "Celebrate Mostafa and Roaa's engagement on 5 November 2026 at Ociel Hall.",
   openGraph: {
-    title: "Karim & Salma — 25.09.2026",
-    description: "25 September 2026 · 7:00 PM · Viola Hall",
+    title: "Mostafa & Roaa — A Celebration of Love",
+    description: "5 November 2026 · 7:00 PM · Ociel Hall",
     type: "website",
   },
 };

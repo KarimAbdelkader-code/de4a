@@ -1,20 +1,20 @@
 export const EVENT = {
-  name: "Karim & Salma Engagement",
-  venue: "Viola Hall",
-  date: "25 September 2026",
+  name: "Mostafa & Roaa Engagement",
+  venue: "Ociel Hall",
+  date: "5 November 2026",
   time: "7:00 PM",
   timeZone: "Africa/Cairo",
-  startsAt: "2026-09-25T18:30:00+03:00",
-  mapsUrl: "https://maps.app.goo.gl/aQyPQjRZzaEw9pu99?g_st=ic",
+  startsAt: "2026-11-05T19:00:00+02:00",
+  mapsUrl: "https://maps.app.goo.gl/BERVP7rQUiVsUPV5A?g_st=ic",
 } as const;
 
 const calendar = new URL("https://calendar.google.com/calendar/render");
 calendar.search = new URLSearchParams({
   action: "TEMPLATE",
   text: EVENT.name,
-  dates: "20260925T183000/20260925T193000",
+  dates: "20261105T190000/20261105T200000",
   ctz: EVENT.timeZone,
-  details: "Join us to celebrate the engagement of Karim and Salma.",
+  details: "Celebrate the engagement of Mostafa and Roaa with us.",
   location: EVENT.venue,
 }).toString();
 

@@ -1,13 +1,10 @@
-import postgres from "postgres";
+import { Db, MongoClient } from "mongodb";
 
-let client: ReturnType<typeof postgres> | null;
+let clientPromise: Promise<MongoClient> | null = null;
 
-export function getDatabase() {
-  if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL is missing");
-  return client ??= postgres(process.env.DATABASE_URL, {
-    ssl: "require",
-    max: 1,
-    prepare: false,
-    connect_timeout: 10,
-  });
+export async function getDatabase(): Promise<Db> {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) throw new Error("MONGODB_URI is missing");
+  clientPromise ??= new MongoClient(uri, { serverSelectionTimeoutMS: 10_000 }).connect();
+  return (await clientPromise).db(process.env.MONGODB_DB || "invitation");
 }

@@ -49,7 +49,7 @@ export function RsvpForm() {
         )} />
       </fieldset>
       <FieldError id="rsvp-attending-error" message={errors.attending?.message} />
-      <label>Message for Karim &amp; Salma<textarea rows={3} {...register("message")} /></label>
+      <label>Message for Mostafa &amp; Roaa<textarea rows={3} {...register("message")} /></label>
       <button className="button dark" disabled={pending} aria-busy={pending}>{pending ? "Sending…" : "Send RSVP"}<ArrowRight size={16} aria-hidden="true" /></button>
       <p className={`form-status ${status ? status.ok ? "success" : "error" : ""}`} aria-live="polite">{status?.message}</p>
     </form>
@@ -72,11 +72,11 @@ export function WishForm({ onSent }: { onSent?: () => void }) {
 
   return (
     <form onSubmit={handleSubmit(send)} className="form-card compact">
-      <label>Your name<input autoComplete="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "wish-name-error" : undefined} {...register("name")} /></label>
+      <label>Name<input autoComplete="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "wish-name-error" : undefined} {...register("name")} /></label>
       <FieldError id="wish-name-error" message={errors.name?.message} />
-      <label>Your message<textarea rows={4} aria-invalid={!!errors.message} aria-describedby={errors.message ? "wish-message-error" : undefined} {...register("message")} /></label>
+      <label>Your wishes<textarea rows={4} aria-invalid={!!errors.message} aria-describedby={errors.message ? "wish-message-error" : undefined} {...register("message")} /></label>
       <FieldError id="wish-message-error" message={errors.message?.message} />
-      <button className="button outline" disabled={pending} aria-busy={pending}>{pending ? "Sending…" : "Send your wish"}<ArrowRight size={16} aria-hidden="true" /></button>
+      <button className="button outline" disabled={pending} aria-busy={pending}>{pending ? "Sending…" : "Share your wishes"}<ArrowRight size={16} aria-hidden="true" /></button>
       <p className={`form-status ${status ? status.ok ? "success" : "error" : ""}`} aria-live="polite">{status?.message}</p>
     </form>
   );

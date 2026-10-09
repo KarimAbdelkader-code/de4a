@@ -49,7 +49,7 @@ try {
         clientWidth: document.documentElement.clientWidth,
         scrollWidth: document.documentElement.scrollWidth,
         heroOpacity: getComputedStyle(document.querySelector('.hero h1')).opacity,
-        hasTime: document.body.innerText.includes('6:30 PM'),
+        hasTime: document.body.innerText.includes('7:00 PM'),
         arabicDirection: getComputedStyle(document.querySelector('.arabic')).direction,
         deadLinks: [...document.querySelectorAll('a[href]')].filter((link) => {
           const href = link.getAttribute('href');
