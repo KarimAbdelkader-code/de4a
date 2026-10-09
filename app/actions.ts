@@ -1,7 +1,7 @@
 "use server";
 
 import { randomUUID } from "node:crypto";
-import { getDatabase } from "@/lib/database";
+import { describeDatabaseError, getDatabase } from "@/lib/database";
 import { rsvpSchema, wishSchema } from "@/lib/validation";
 
 export type FormResult = { ok: boolean; message: string };
@@ -19,7 +19,11 @@ export async function submitRsvp(input: unknown): Promise<FormResult> {
     });
     return { ok: true, message: "Thank you — your reply has been received." };
   } catch (error) {
-    console.error("RSVP insert failed", error instanceof Error ? error.message : error);
+    console.error("RSVP insert failed", {
+      error: describeDatabaseError(error),
+      mongodbUriConfigured: Boolean(process.env.MONGODB_URI),
+      mongodbDatabase: process.env.MONGODB_DB || "invitation",
+    });
     return { ok: false, message: "We could not save your RSVP. Please try again." };
   }
 }
@@ -37,7 +41,11 @@ export async function submitWish(input: unknown): Promise<FormResult> {
     });
     return { ok: true, message: "Your wish is now part of our story." };
   } catch (error) {
-    console.error("Wish insert failed", error instanceof Error ? error.message : error);
+    console.error("Wish insert failed", {
+      error: describeDatabaseError(error),
+      mongodbUriConfigured: Boolean(process.env.MONGODB_URI),
+      mongodbDatabase: process.env.MONGODB_DB || "invitation",
+    });
     return { ok: false, message: "We could not save your wish. Please try again." };
   }
 }
